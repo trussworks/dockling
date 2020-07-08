@@ -1,0 +1,30 @@
+* Make a server that spits out stats about the machine/locaiton it is running on
+	x hostname
+	x username
+	x pwd
+	* ls /
+	* architecture
+	* hostos
+	x env vars
+* have the server serve an endpoint that returns some simple HTML
+	* have the PORT be configurable
+* Exercise 1 is write a dockerfile to run the server
+* spin up a postgres backend for another endpoint
+* install some kind of depenedency to show layering. 
+
+Concepts:
+
+Dockerfile 
+layers
+cmd vs. entrypoint
+multi-stage build
+docker volumes
+the workspace, you can't refer to things not copied in
+image vs. container
+
+Commands:
+
+docker build
+docker run 
+docker pull
+docker push
