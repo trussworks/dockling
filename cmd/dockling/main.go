@@ -2,26 +2,26 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"os/user"
 	"runtime"
-	"net/http"
 )
 
 func printStats() {
 	workingDir, err := os.Getwd()
 	if err != nil {
-	    fmt.Println(err)
+		fmt.Println(err)
 	}
 
 	hostname, err := os.Hostname()
 	if err != nil {
-	    fmt.Println(err)
+		fmt.Println(err)
 	}
 
 	user, err := user.Current()
 	if err != nil {
-	    fmt.Println(err)
+		fmt.Println(err)
 	}
 
 	envVars := os.Environ()
@@ -63,7 +63,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func serve(port string) {
 	http.HandleFunc("/", helloHandler)
 	fmt.Printf("Serving HTTP on :%s\n", port)
-    fmt.Println(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+	fmt.Println(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
 func main() {
