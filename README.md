@@ -26,4 +26,13 @@ Hit the two web servers at http://localhost:8042 (local) and http://localhost:80
 
 Look at the output of `docker ps` and `docker images`
 
-Try editing the webpage and get that serving in a new docker _container_
+
+Try editing the webpage and get that serving in a new docker _container_.
+
+To stop the container you have a few fun options:
+
+- Run `docker stop <CONTAINER_ID>` to stop the container. 
+(Hint: You can get your container id from `docker ps`)
+
+- In the terminal where the container is running, hit `Ctrl + C` to terminate processes inside the container (which, in this case, also terminates the container).
+
