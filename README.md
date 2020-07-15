@@ -27,3 +27,13 @@ Hit the two web servers at http://localhost:8042 (local) and http://localhost:80
 Look at the output of `docker ps` and `docker images`
 
 Try editing the webpage and get that serving in a new docker _container_
+
+### Exercise 2
+
+Use the little website at /name_saver. It requires redis to be available. There are official redis images available here: https://hub.docker.com/_/redis
+
+1. Get a redis image running, (make sure you expose a port!) and try and get the dockling server to connect to it locally
+* if you get dockling running, visit http://localhost:8042/name_saver
+* it will tell you wether it can see redis or not. Once it does, it will use redis to save a list of names. 
+
+2. Get the dockling server to connect to it while it is _also_ running in a docker container
