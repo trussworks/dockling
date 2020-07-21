@@ -1,0 +1,33 @@
+FROM python:3.7-slim
+
+# We need pipenv regardless of what files change in our project, so go
+# ahead and install it now
+RUN pip install pipenv
+
+# Do our work from this directory (creating it if necessary)
+WORKDIR /app
+
+# Copy in the dependency management files first.  Usually we change
+# depenencies way less often than we change the code
+# When COPYing more than one file, the destination must be a directory
+# and end with a /
+COPY Pipfile Pipfile.lock ./
+
+# In a docker container, we don't need a virtualenv, so use --system
+# The --deploy option means this command will fail if the lockfile is
+# out of date
+RUN pipenv install --system --deploy
+
+# Now copy our code
+COPY setup.py ./
+# One *really* annoying thing is that you can't COPY both files and
+# directories into a directory.  Also when copying a directory, you
+# have to specify the destination directory or it will copy the
+# *contents* of the source directory to the target directory
+COPY docklingcake ./docklingcake
+
+# Install our package
+RUN python setup.py install
+
+# Our package installs an 'example' console_script
+CMD ["example"]
