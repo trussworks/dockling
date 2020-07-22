@@ -1,0 +1,16 @@
+FROM python:3.7-slim
+
+# Do our work from this directory (creating it if necessary)
+WORKDIR /app
+# COPY *everything* from the current docker context into the WORKDIR
+COPY . .
+# We want to use pipenv to manage our dependencies so install that
+RUN pip install pipenv
+# In a docker container, we don't need a virtualenv, so use --system
+# The --deploy option means this command will fail if the lockfile is
+# out of date
+RUN pipenv install --system --deploy
+# Install our package
+RUN python setup.py install
+# Our package installs an 'example' console_script
+CMD ["example"]
